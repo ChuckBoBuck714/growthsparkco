@@ -20,3 +20,137 @@ body {
   color: var(--color-navy);
   background-color: #ffffff;
 }
+
+/* Blue lightning background animation */
+.lightning-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lightning-bolt {
+  position: absolute;
+  color: var(--color-accent-blue);
+  opacity: 0;
+  filter: drop-shadow(0 0 12px rgba(37, 99, 235, 0.45))
+    drop-shadow(0 0 28px rgba(59, 130, 246, 0.25));
+  will-change: opacity, transform;
+}
+
+.lightning-bolt-1 {
+  top: 8%;
+  right: 12%;
+  width: clamp(72px, 8vw, 110px);
+  animation: lightning-flash 7s ease-in-out infinite;
+}
+
+.lightning-bolt-2 {
+  top: 42%;
+  left: 6%;
+  width: clamp(56px, 6vw, 88px);
+  animation: lightning-flash 9s ease-in-out 2.5s infinite;
+}
+
+.lightning-bolt-3 {
+  bottom: 18%;
+  right: 22%;
+  width: clamp(48px, 5vw, 72px);
+  animation: lightning-flash 11s ease-in-out 5s infinite;
+}
+
+.lightning-bolt-4 {
+  top: 22%;
+  left: 38%;
+  width: clamp(40px, 4vw, 60px);
+  animation: lightning-flash 8s ease-in-out 3.8s infinite;
+  opacity: 0;
+}
+
+.lightning-glow {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.18) 0%,
+    rgba(147, 197, 253, 0.06) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+}
+
+.lightning-glow-1 {
+  top: 12%;
+  right: 8%;
+  width: min(420px, 55vw);
+  height: min(420px, 55vw);
+  animation: lightning-glow-pulse 7s ease-in-out infinite;
+}
+
+.lightning-glow-2 {
+  bottom: 10%;
+  left: 4%;
+  width: min(360px, 48vw);
+  height: min(360px, 48vw);
+  animation: lightning-glow-pulse 9s ease-in-out 2.5s infinite;
+}
+
+@keyframes lightning-flash {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  89% {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 0.28;
+    transform: scale(1.02);
+  }
+  91% {
+    opacity: 0.18;
+    transform: scale(1);
+  }
+  92% {
+    opacity: 0.35;
+    transform: scale(1.01);
+  }
+  93%,
+  94% {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+
+@keyframes lightning-glow-pulse {
+  0%,
+  88%,
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  90% {
+    opacity: 0.55;
+    transform: scale(1.05);
+  }
+  92% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  94% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightning-bolt,
+  .lightning-glow {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
