@@ -27,8 +27,9 @@ Open [http://localhost:3000](http://localhost:3000).
 | `/how-it-works` | Three-step process |
 | `/faq` | Full FAQ |
 | `/contact` | Contact info + lead form |
-| `/privacy-policy` | Privacy policy |
-| `/terms` | Terms of service |
+| `/privacy-policy` | Privacy Policy |
+| `/terms` | Terms & Conditions |
+| `/disclaimer` | Disclaimer |
 
 ## Lead Form API
 
@@ -48,7 +49,7 @@ Field mapping is in `src/lib/zoho.ts`. If your Deluge function expects different
 
 ## Legal Pages
 
-Privacy and Terms are adapted from Token Capital Group templates with brand substitutions. **Have legal counsel review before launch.**
+Privacy Policy, Terms & Conditions, and Disclaimer content is sourced from counsel-provided documents in `src/lib/legal-content.tsx`. **Have legal counsel review before launch.**
 
 ## Configuration
 

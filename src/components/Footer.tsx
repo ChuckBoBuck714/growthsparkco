@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   BUSINESS_HOURS,
   FOOTER_DISCLAIMER,
+  LEGAL_LINKS,
   NAV_LINKS,
   SITE_EMAIL,
   SITE_NAME,
@@ -39,16 +40,13 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wide text-navy">Legal</h3>
             <ul className="mt-4 space-y-2">
-              <li>
-                <Link href="/privacy-policy" className="text-sm text-charcoal hover:text-accent-blue transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms" className="text-sm text-charcoal hover:text-accent-blue transition-colors">
-                  Terms of Use
-                </Link>
-              </li>
+              {LEGAL_LINKS.map(({ href, label }) => (
+                <li key={href}>
+                  <Link href={href} className="text-sm text-charcoal hover:text-accent-blue transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 

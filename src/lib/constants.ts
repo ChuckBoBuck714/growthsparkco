@@ -1,5 +1,6 @@
 export const SITE_NAME = "Growth Spark Co.";
 export const SITE_URL = "https://growthsparkco.com";
+export const SITE_DOMAIN = "growthsparkco.com";
 export const SITE_EMAIL = "info@growthsparkco.com";
 export const SITE_PHONE = "(949) 342-5432";
 export const BUSINESS_HOURS = "Monday–Friday, 7:00 AM – 4:00 PM PST";
@@ -10,6 +11,12 @@ export const NAV_LINKS = [
   { href: "/how-it-works", label: "How It Works" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
+] as const;
+
+export const LEGAL_LINKS = [
+  { href: "/privacy-policy", label: "Privacy Policy" },
+  { href: "/terms", label: "Terms & Conditions" },
+  { href: "/disclaimer", label: "Disclaimer" },
 ] as const;
 
 export const FOOTER_DISCLAIMER =
