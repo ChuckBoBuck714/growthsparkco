@@ -17,6 +17,7 @@ import {
   SITE_URL,
 } from "./constants";
 
+export const PRIVACY_LAST_UPDATED = "June 11, 2026";
 export const TERMS_LAST_UPDATED = "June 11, 2026";
 export const DISCLAIMER_LAST_UPDATED = "June 11, 2026";
 
@@ -621,7 +622,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "governing-law",
-    title: "12. Governing Law",
+    title: "15. Governing Law",
     content: (
       <p>
         These Terms of Service shall be governed by and construed in accordance with the laws of the
@@ -631,7 +632,7 @@ export const termsSections: LegalSection[] = [
   },
   {
     id: "contact-terms",
-    title: "13. Contact Us",
+    title: "16. Contact Us",
     content: (
       <>
         <p>If you have any questions about these Terms of Service, please contact us:</p>

@@ -1,5 +1,5 @@
 import { LegalPageLayout } from "@/components/LegalPageLayout";
-import { privacySections } from "@/lib/legal-content";
+import { PRIVACY_LAST_UPDATED, privacySections } from "@/lib/legal-content";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
@@ -10,5 +10,11 @@ export const metadata = createPageMetadata({
 });
 
 export default function PrivacyPolicyPage() {
-  return <LegalPageLayout title="Privacy Policy" sections={privacySections} />;
+  return (
+    <LegalPageLayout
+      title="Privacy Policy"
+      lastUpdated={PRIVACY_LAST_UPDATED}
+      sections={privacySections}
+    />
+  );
 }
