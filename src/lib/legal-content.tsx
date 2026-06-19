@@ -549,7 +549,7 @@ export const termsSections: LegalSection[] = [
         applicant has in good faith exercised any right under the Consumer Credit Protection Act. If
         for any reason your application for business credit is denied, you have the right to a written
         statement of the specific reasons for the denial. To obtain the statement, please write to
-        Growth Spark Co. LLC, 26 Executive Park ste#100, Irvine, CA 92614. Funding amount and credit
+        Growth Spark Co. LLC, 2160 Barranca Parkway #1068, Irvine CA 92606. Funding amount and credit
         approval is subject to a full credit profile review.
       </p>
     ),
