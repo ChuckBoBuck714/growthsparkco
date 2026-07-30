@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import {
   CONSENT_TEXT,
@@ -320,7 +321,21 @@ export function LeadForm({ id = "request-review", className = "" }: LeadFormProp
             aria-invalid={!!errors.consent}
           />
           <label htmlFor="consent" className="text-xs leading-relaxed text-charcoal">
-            {CONSENT_TEXT}
+            {CONSENT_TEXT} View our{" "}
+            <Link
+              href="/terms"
+              className="font-medium text-accent-blue underline hover:text-blue-700"
+            >
+              Terms of Services
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/privacy-policy"
+              className="font-medium text-accent-blue underline hover:text-blue-700"
+            >
+              Privacy Policy
+            </Link>
+            .
           </label>
         </div>
         {errors.consent && <p className={errorClass}>{errors.consent}</p>}
