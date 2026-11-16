@@ -1,54 +1,37 @@
 import { NextResponse } from "next/server";
-import { submitLeadToZoho } from "@/lib/zoho";
-import { validateLeadForm, type LeadFormData } from "@/lib/validation";
+import { handleLeadSubmission } from "@/lib/deliver-lead";
+import type { LeadFormData } from "@/lib/validation";
 
 /**
- * Lead submission endpoint → Zoho CRM function `twl_campaign`.
+ * Lead submission endpoint.
  *
- * Requires ZOHO_CRM_FUNCTION_EXECUTE_URL in environment (see .env.example).
- * Set the same variable in Vercel/hosting for production.
+ * Validates the form, pushes the lead to Zoho CRM function `twl_campaign`,
+ * and emails the funding team. The email is best-effort: a mail failure does
+ * not change the response, and a Zoho failure still attempts the email.
+ *
+ * Requires ZOHO_CRM_FUNCTION_EXECUTE_URL. Email uses RESEND_API_KEY,
+ * LEAD_EMAIL_FROM, and LEAD_NOTIFY_TO (see .env.example).
  */
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as LeadFormData;
+    const result = await handleLeadSubmission(body, request);
 
-    const errors = validateLeadForm(body);
-    if (Object.keys(errors).length > 0) {
-      return NextResponse.json({ success: false, errors }, { status: 400 });
-    }
-
-    const zoho = await submitLeadToZoho(body);
-
-    if (!zoho.ok) {
-      return NextResponse.json(
-        {
-          success: false,
-          errors: {
-            form:
-              "We could not submit your request right now. Please try again or contact us directly.",
-          },
-        },
-        { status: 502 }
-      );
-    }
-
-    if (process.env.NODE_ENV === "development") {
+    if (result.zohoOk && process.env.NODE_ENV === "development") {
       console.log("[Lead submission] forwarded to Zoho", {
         receivedAt: new Date().toISOString(),
         email: body.email,
         businessName: body.businessName,
+        emailOk: result.emailOk,
+        emailSkipped: result.emailSkipped,
       });
     }
 
-    return NextResponse.json({
-      success: true,
-      message:
-        "Thank you. Your request has been received. A funding specialist may contact you during business hours to review your information.",
-    });
+    return NextResponse.json(result.body, { status: result.httpStatus });
   } catch {
     return NextResponse.json(
       { success: false, errors: { form: "Invalid request." } },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

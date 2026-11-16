@@ -35,6 +35,8 @@ export type LeadFormData = {
   noOpenPositions: boolean;
   previouslyDefaulted: YesNoAnswer;
   homeowner: YesNoAnswer;
+  /** Path of the page that submitted the form. Added by the browser; not a typed field. */
+  source?: string;
 };
 
 /** Keep digits and a single decimal point with at most two places. */
