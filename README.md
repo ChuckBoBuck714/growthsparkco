@@ -1,6 +1,6 @@
 # Growth Spark Co. Website
 
-Production-ready marketing site for [Growth Spark Co.](https://growthsparkco.com) — business expansion capital for growing companies.
+Production-ready marketing site for [Growth Spark Co.](https://www.growthsparkco.com) — business expansion capital for growing companies. The apex domain redirects to this www host.
 
 ## Tech Stack
 

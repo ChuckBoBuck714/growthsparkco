@@ -4,6 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
+import { isServicePath } from "@/lib/services";
+
+function linkIsActive(href: string, pathname: string) {
+  if (href === "/small-business-funding") return isServicePath(pathname);
+  return pathname === href;
+}
 
 export function Navbar() {
   const pathname = usePathname();
@@ -22,22 +28,26 @@ export function Navbar() {
           {SITE_NAME}
         </Link>
 
-        <ul className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map(({ href, label }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`text-sm font-medium transition-colors hover:text-accent-blue ${
-                  pathname === href ? "text-accent-blue" : "text-charcoal"
-                }`}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-8">
+          {NAV_LINKS.map(({ href, label }) => {
+            const active = linkIsActive(href, pathname);
+            return (
+              <li key={href}>
+                <Link
+                  href={href}
+                  aria-current={active ? "page" : undefined}
+                  className={`text-sm font-medium transition-colors hover:text-accent-blue ${
+                    active ? "text-accent-blue" : "text-charcoal"
+                  }`}
+                >
+                  {label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Link
             href="/#request-review"
             className="inline-flex items-center rounded-lg bg-accent-blue px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2"
@@ -48,7 +58,7 @@ export function Navbar() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-lg p-2 text-charcoal hover:bg-slate-100 md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-charcoal hover:bg-slate-100 lg:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -67,21 +77,25 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div id="mobile-menu" className="border-t border-border bg-white px-4 pb-6 md:hidden">
+        <div id="mobile-menu" className="border-t border-border bg-white px-4 pb-6 lg:hidden">
           <ul className="flex flex-col gap-1 pt-4">
-            {NAV_LINKS.map(({ href, label }) => (
+            {NAV_LINKS.map(({ href, label }) => {
+              const active = linkIsActive(href, pathname);
+              return (
               <li key={href}>
                 <Link
                   href={href}
+                  aria-current={active ? "page" : undefined}
                   className={`block rounded-lg px-3 py-2.5 text-base font-medium transition-colors hover:bg-slate-50 ${
-                    pathname === href ? "text-accent-blue bg-accent-blue-light/30" : "text-charcoal"
+                    active ? "text-accent-blue bg-accent-blue-light/30" : "text-charcoal"
                   }`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {label}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
           <Link
             href="/#request-review"

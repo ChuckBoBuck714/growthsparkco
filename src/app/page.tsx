@@ -7,6 +7,14 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { QualificationSection } from "@/components/QualificationSection";
 import { TrustBar } from "@/components/TrustBar";
 import { WhyGrowthSpark } from "@/components/WhyGrowthSpark";
+import { createPageMetadata } from "@/lib/metadata";
+
+export const metadata = createPageMetadata({
+  title: "Growth Spark Co. | Business Expansion Capital for Growing Companies",
+  description:
+    "Growth Spark Co. helps small business owners explore funding options for expansion, working capital, equipment, inventory, payroll, marketing, and cash flow needs.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (

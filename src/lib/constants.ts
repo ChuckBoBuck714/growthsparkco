@@ -1,14 +1,30 @@
 export const SITE_NAME = "Growth Spark Co.";
-export const SITE_URL = "https://growthsparkco.com";
-export const SITE_DOMAIN = "growthsparkco.com";
+export const SITE_LEGAL_NAME = "Growth Spark Co. LLC";
+// The live site is served on the www host. Vercel 308-redirects the apex
+// (https://growthsparkco.com) to www. Public URLs in this repo use www so
+// canonicals, Open Graph URLs, and the sitemap match that host.
+export const SITE_URL = "https://www.growthsparkco.com";
+export const SITE_DOMAIN = "www.growthsparkco.com";
 export const SITE_EMAIL = "info@growthsparkco.com";
 export const SITE_PHONE = "(949) 342-5432";
+export const SITE_PHONE_E164 = "+1-949-342-5432";
 export const BUSINESS_HOURS = "Monday–Friday, 7:00 AM – 4:00 PM PST";
+
+export function absoluteUrl(path = ""): string {
+  if (!path || path === "/") return SITE_URL;
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+
+export const ORGANIZATION_DESCRIPTION =
+  "Growth Spark Co. LLC is a marketing and referral service that helps small-business owners explore funding options. Growth Spark Co. is not a direct lender, bank, or government agency, and it does not fund, issue, or make loans directly. A specialist may follow up after an owner submits a request. Products may not be available in all states, and submitting a request does not guarantee approval, funding, or specific terms.";
 
 export const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/how-it-works", label: "How It Works" },
+  { href: "/small-business-funding", label: "Funding" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -60,3 +76,5 @@ export const USE_OF_FUNDS_OPTIONS = [
   "Cash Flow",
   "Other",
 ] as const;
+
+export type UseOfFundsOption = (typeof USE_OF_FUNDS_OPTIONS)[number];
