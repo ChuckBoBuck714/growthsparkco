@@ -469,6 +469,7 @@ async function sendWithResend(payload: LeadEmailPayload, apiKey: string): Promis
 /**
  * Send the lead notification. Missing API key skips the send with a warning.
  * Network and provider errors are logged and returned; this function does not throw.
+ * RESEND_API_KEY is configured in Vercel.
  */
 export async function sendLeadNotification(
   data: LeadFormData,
