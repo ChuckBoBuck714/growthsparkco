@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   CONSENT_TEXT,
@@ -50,6 +51,7 @@ type LeadFormProps = {
 };
 
 export function LeadForm({ id = "request-review", className = "", defaultUseOfFunds }: LeadFormProps) {
+  const pathname = usePathname();
   const [form, setForm] = useState<LeadFormData>(() => createFormState(defaultUseOfFunds));
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -152,7 +154,7 @@ export function LeadForm({ id = "request-review", className = "", defaultUseOfFu
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, source: pathname || "/" }),
       });
 
       if (!res.ok) {
