@@ -8,6 +8,7 @@ import {
   MONTHLY_REVENUE_OPTIONS,
   TIME_IN_BUSINESS_OPTIONS,
   USE_OF_FUNDS_OPTIONS,
+  type UseOfFundsOption,
 } from "@/lib/constants";
 import { validateLeadForm, type LeadFormData } from "@/lib/validation";
 
@@ -28,10 +29,14 @@ const initialState: LeadFormData = {
 type LeadFormProps = {
   id?: string;
   className?: string;
+  defaultUseOfFunds?: UseOfFundsOption;
 };
 
-export function LeadForm({ id = "request-review", className = "" }: LeadFormProps) {
-  const [form, setForm] = useState<LeadFormData>(initialState);
+export function LeadForm({ id = "request-review", className = "", defaultUseOfFunds }: LeadFormProps) {
+  const [form, setForm] = useState<LeadFormData>({
+    ...initialState,
+    useOfFunds: defaultUseOfFunds ?? "",
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -85,7 +90,7 @@ export function LeadForm({ id = "request-review", className = "" }: LeadFormProp
     return (
       <div
         id={id}
-        className={`rounded-2xl border border-accent-green/30 bg-accent-green-light p-8 shadow-lg ${className}`}
+        className={`scroll-mt-28 rounded-2xl border border-accent-green/30 bg-accent-green-light p-8 shadow-lg ${className}`}
         role="status"
       >
         <div className="flex items-start gap-3">
@@ -116,7 +121,7 @@ export function LeadForm({ id = "request-review", className = "" }: LeadFormProp
   return (
     <div
       id={id}
-      className={`rounded-2xl border border-border bg-white p-6 shadow-lg sm:p-8 ${className}`}
+      className={`scroll-mt-28 rounded-2xl border border-border bg-white p-6 shadow-lg sm:p-8 ${className}`}
     >
       <h2 className="text-xl font-bold text-navy sm:text-2xl">Request a Business Funding Review</h2>
       <p className="mt-2 text-sm text-charcoal leading-relaxed">
@@ -326,7 +331,7 @@ export function LeadForm({ id = "request-review", className = "" }: LeadFormProp
               href="/terms"
               className="font-medium text-accent-blue underline hover:text-blue-700"
             >
-              Terms of Services
+              Terms of Service
             </Link>{" "}
             and{" "}
             <Link

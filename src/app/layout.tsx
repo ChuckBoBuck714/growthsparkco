@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
 import { LightningBackground } from "@/components/LightningBackground";
 import { Navbar } from "@/components/Navbar";
-import { createPageMetadata } from "@/lib/metadata";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
+import { organizationJsonLd } from "@/lib/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,12 +14,24 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Growth Spark Co. | Business Expansion Capital for Growing Companies",
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Growth Spark Co. | Business Expansion Capital for Growing Companies",
+    template: "%s",
+  },
   description:
-    "Growth Spark Co. helps small business owners explore funding options for expansion, working capital, equipment, inventory, payroll, marketing, and cash flow needs.",
-  path: "/",
-});
+    "Growth Spark Co. is a marketing and referral service that helps small business owners explore business funding options. Growth Spark Co. is not a direct lender.",
+  applicationName: SITE_NAME,
+  openGraph: {
+    siteName: SITE_NAME,
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
+};
 
 export default function RootLayout({
   children,
@@ -27,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="relative min-h-screen flex flex-col antialiased">
+        <JsonLd data={organizationJsonLd()} />
         <LightningBackground />
         <div className="relative z-0 flex min-h-screen flex-col">
           <Navbar />

@@ -4,9 +4,9 @@ import { BUSINESS_HOURS, SITE_EMAIL, SITE_PHONE } from "@/lib/constants";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Contact Us | Growth Spark Co.",
+  title: "Contact a Business Funding Specialist | Growth Spark Co.",
   description:
-    "Contact Growth Spark Co. or submit a business funding review request. Speak with a funding specialist during business hours.",
+    "Contact Growth Spark Co. at (949) 342-5432 or info@growthsparkco.com, Monday–Friday 7:00 AM–4:00 PM PST, or submit a business funding review request.",
   path: "/contact",
 });
 

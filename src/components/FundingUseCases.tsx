@@ -1,4 +1,12 @@
+import Link from "next/link";
+import { SERVICE_PAGES } from "@/lib/services";
 import { SectionHeading } from "./SectionHeading";
+
+const cardLinks = new Map<string, string>(
+  SERVICE_PAGES.flatMap((page) =>
+    page.homepageCardTitle ? [[page.homepageCardTitle, `/${page.slug}`] as const] : [],
+  ),
+);
 
 const useCases = [
   { title: "Expansion", description: "Open a new location, add capacity, or support a larger growth plan." },
@@ -20,17 +28,46 @@ export function FundingUseCases() {
           subtitle="Business capital can be used for a wide range of growth and operating needs."
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {useCases.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-xl border border-border bg-white p-6 shadow-sm transition hover:shadow-md"
-            >
-              <div className="h-1 w-8 rounded-full bg-accent-green" />
-              <h3 className="mt-4 text-lg font-semibold text-navy">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-charcoal">{item.description}</p>
-            </div>
-          ))}
+          {useCases.map((item) => {
+            const href = cardLinks.get(item.title);
+            const body = (
+              <>
+                <div className="h-1 w-8 rounded-full bg-accent-green" />
+                <h3 className="mt-4 text-lg font-semibold text-navy">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-charcoal">{item.description}</p>
+                {href ? (
+                  <span className="mt-4 inline-block text-sm font-semibold text-accent-blue">Learn more</span>
+                ) : null}
+              </>
+            );
+
+            if (!href) {
+              return (
+                <div key={item.title} className="rounded-xl border border-border bg-white p-6 shadow-sm">
+                  {body}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={item.title}
+                href={href}
+                className="rounded-xl border border-border bg-white p-6 shadow-sm transition hover:border-accent-blue hover:shadow-md"
+              >
+                {body}
+              </Link>
+            );
+          })}
         </div>
+        <p className="mt-8 text-center text-sm leading-relaxed text-charcoal">
+          Payroll, marketing, and hiring can be selected as an intended use of funds on the request
+          form.{" "}
+          <Link href="/small-business-funding" className="font-semibold text-accent-blue hover:underline">
+            See small business funding options
+          </Link>
+          .
+        </p>
       </div>
     </section>
   );

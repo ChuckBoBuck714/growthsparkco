@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/constants";
 import type { LeadFormData } from "@/lib/validation";
 
 /** Maps website lead fields to Zoho function `arguments` (named + camelCase for Deluge flexibility). */
@@ -14,7 +15,7 @@ export function buildZohoLeadArguments(data: LeadFormData): Record<string, strin
     Use_of_Funds: data.useOfFunds,
     Description: data.notes?.trim() ?? "",
     Lead_Source: "Growth Spark Co. Website",
-    Website: "https://growthsparkco.com",
+    Website: SITE_URL,
     Consent: data.consent ? "true" : "false",
     firstName: data.firstName.trim(),
     lastName: data.lastName.trim(),

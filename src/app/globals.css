@@ -147,6 +147,14 @@ body {
   }
 }
 
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item[open] .faq-chevron {
+  transform: rotate(180deg);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lightning-bolt,
   .lightning-glow {
