@@ -71,7 +71,7 @@ export const SERVICE_PAGES: ServicePageContent[] = [
       {
         heading: "What the review asks for",
         paragraphs: [
-          "The form asks for your name, business name, phone, email, time in business, a monthly revenue range, a requested funding range, and the intended use of funds. You can add a note.",
+          "The form asks for your name, business name, phone, email, time in business, a monthly revenue range, a requested funding range, and the intended use of funds. You can add a note. You can also list open business funding positions, or leave that section blank, and you may answer whether you have previously defaulted on business funding and whether you are a homeowner.",
           "You are also asked to consent to contact by phone, email, and text. Consent is not required to buy a product, and you can reply STOP to opt out of texts.",
         ],
       },

@@ -35,7 +35,7 @@ const additionalFaqs: FAQItem[] = [
   {
     question: "What information do I need to provide?",
     answer:
-      "You will be asked for basic business details including name, contact information, time in business, monthly revenue range, requested funding amount, and intended use of funds.",
+      "You will be asked for basic business details including name, contact information, time in business, monthly revenue range, requested funding amount, and intended use of funds. You can also list open business funding positions, and you may say whether you have previously defaulted on business funding and whether you are a homeowner. Those extra questions can be left blank.",
   },
   {
     question: "Who may qualify for a funding review?",
